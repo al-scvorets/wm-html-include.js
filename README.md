@@ -112,7 +112,7 @@ It means:
 <!-- GOOD -->
     <hr /> <br />
 ```
-* Include a space before the trailing / and > of empty elements, e.g. <br />, <hr /> and <img src="karen.jpg" alt="Karen" />
+* Include a space before the trailing / and > of empty elements, e.g. `<br />`, `<hr />` and `<img src="karen.jpg" alt="Karen" />`
 * do not use empty instance of an element whose content model is not EMPTY (for example, an empty div or paragraph)
 ```html
 <!-- BAD -->
