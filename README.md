@@ -12,8 +12,8 @@ A part of  [Wamer project](http://www.wamer.net/)
 ## When to use it
 
 If you need to compose a Web page on client-side, but either iframes or [HTML Imports]( http://www.w3.org/TR/2013/WD-html-imports-20130514) are not suitable to the case.  
-One most likely may need it to:
-quickly sew Web page from some existing or newly developed small parts (components);
+One most likely may need it to:  
+quickly sew Web page from some existing or newly developed small parts (components);  
 patch existing Web page not changing significantly its content.
 
 
