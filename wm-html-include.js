@@ -1,18 +1,20 @@
 /*!
- * wm-html-include.js   v0.1.0
+ * wm-html-include.js   v0.1.1
  * Includes (injects) HTML pages
  *
  * Copyright 2015 http://wamer.net
  * Released under the MIT license
  * http://opensource.org/licenses/MIT
  *
- * Last Update: 2015-04-17
+ * Last Update: 2015-04-19
  */
 
 (function (window, undefined) {
-var _version_ = '0.1.0';
+var _version_     = '0.1.1',
 
-var _entry_point_ = function () {
+    _log_internal = [],
+
+    _entry_point_ = function () {
 
 function noop () {
     return null;
@@ -27,9 +29,8 @@ var _dbg_log = (function () {
         return function () {window.opera.postError.apply (window.opera, arguments);};
 
     } else {
-        if (!window.wamer.include.log) window.wamer.include.log = [];
         return function () {
-           window.wamer.include.log.push (Array.prototype.join.call (arguments, ' '));
+           _log_internal.push (Array.prototype.join.call (arguments, ' '));
         };
     }
 }());
@@ -401,6 +402,7 @@ function include_js (arg_scr) {
 };
 
 _entry_point_.version = _version_;
+_entry_point_.log     = _log_internal;
 
 _entry_point_();  // run immediately
 
@@ -420,4 +422,4 @@ if (typeof module === 'object' &&
     }
 } 
 
-})(window); 
+})(window);
