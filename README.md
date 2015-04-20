@@ -66,12 +66,34 @@ Use ***wmHtmlInclude()*** function of *the script* interface.
 *The script* finds all the tags with **data-wi-src** attribute.  
 Then, for each such tag it gets the referred HTML page,  
 merges all it's *style, link[rel="stylesheet"]* to the target page,  
-replace target element with source's *body*,  
-load and run source's *script* elements.  
+replaces target element with source's *body*,  
+loads and runs source's *script* elements.  
   
 It circumvents the same-origin restrictions by [YQL](https://developer.yahoo.com/yql/)
 and works with any [CORS enabled browser](http://caniuse.com/#feat=cors).
-
+  
+There are a few cases when the *css* or *script* is NOT loaded from the include:
+ 1. *link* or *script* with *src* attribute. *The script* checks if corresponding
+ resource with the same *url* value already exists in the target document. In this case the resource
+ is not loaded;
+ 2. You can define the loading condition explicitly by *data-wi-loadchk* attribute in included resources
+ ~~~html
+    <link href="https://code.jquery.com/ui/1.11.2/themes/redmond/jquery-ui.min.css" rel="stylesheet"
+            data-wi-loadchk="jQuery.ui" />
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"
+            data-wi-loadchk="jQuery.fn.scrollspy.noConflict" />
+    <!-- ... -->
+    <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"
+            data-wi-loadchk="jQuery.ui">
+    </script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
+            data-wi-loadchk="jQuery.fn.scrollspy.noConflict">
+    </script>
+~~~
+   
+*The script* evaluates the condition pointed out by *data-wi-loadchk* and does NOT load
+ the resource if the condition is *true*.    
+ In the example above, the *jQuery.ui* and *Bootstrap* libraries are checked to prevent the second loading.
 
 ## Warning: (X)HTML compliance assumed
 
