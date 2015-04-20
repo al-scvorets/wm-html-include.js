@@ -77,18 +77,20 @@ There are a few cases when the *css* or *script* is NOT loaded from the include:
  resource with the same *url* value already exists in the target document. In this case the resource
  is not loaded;
  2. You can define the loading condition explicitly by *data-wi-loadchk* attribute in included resources
- ```html
-    <link href="https://code.jquery.com/ui/1.11.2/themes/redmond/jquery-ui.min.css" rel="stylesheet"
-            data-wi-loadchk="jQuery.ui" />
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"
-            data-wi-loadchk="jQuery.fn.scrollspy.noConflict" />
-    <!-- ... -->
-    <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"
-            data-wi-loadchk="jQuery.ui">
-    </script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
-            data-wi-loadchk="jQuery.fn.scrollspy.noConflict">
-    </script>
+   
+
+```html
+<link href="https://code.jquery.com/ui/1.11.2/themes/redmond/jquery-ui.min.css" rel="stylesheet"
+        data-wi-loadchk="jQuery.ui" />
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"
+        data-wi-loadchk="jQuery.fn.scrollspy.noConflict" />
+<!-- ... -->
+<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"
+        data-wi-loadchk="jQuery.ui">
+</script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
+        data-wi-loadchk="jQuery.fn.scrollspy.noConflict">
+</script>
 ```
    
 *The script* evaluates the condition pointed out by *data-wi-loadchk* and does NOT load
