@@ -4,11 +4,6 @@ is a small *script* to include external HTML page(s) into comprising HTML page.
 A part of  [Wamer project](http://www.wamer.net/)
 
 
-## Alternatives
-* [html-imports-content](https://github.com/adjohnson916/html-imports-content)
-* [Matthew-Dove/Inject](https://github.com/Matthew-Dove/Inject)
-
-
 ## When to use it
 
 If you need to compose a Web page on client-side, but either iframes or [HTML Imports]( http://www.w3.org/TR/2013/WD-html-imports-20130514) are not suitable to the case.  
@@ -35,8 +30,8 @@ patch existing Web page not changing significantly its content.
 <script src="wm-html-include.js"> </script>
 ```
 
-*The script* includes all the pages dereferenced by **data-wi-src** attribute into the comprising HTML page.  
-**Note!**: *the script* entirely removes the target element replacing it with dereferenced content.
+*The script* includes all the pages referenced by **data-wi-src** attribute into the comprising HTML page.  
+**Note!**: *the script* entirely removes the target element replacing it with referenced content.
 So if you need any additional styles for included part you should wrap target with some container.
 Example:
 
@@ -72,7 +67,7 @@ Use ***wmHtmlInclude()*** function of *the script* interface.
 Then, for each such tag it gets the referred HTML page,  
 merges all it's *style, link[rel="stylesheet"]* to the target page,  
 replace target element with source's *body*,  
-load and run  source's *script* elements.  
+load and run source's *script* elements.  
   
 It circumvents the same-origin restrictions by [YQL](https://developer.yahoo.com/yql/)
 and works with any [CORS enabled browser](http://caniuse.com/#feat=cors).
@@ -80,7 +75,7 @@ and works with any [CORS enabled browser](http://caniuse.com/#feat=cors).
 
 ## Warning: (X)HTML compliance assumed
 
-In order to properly display the page, and due to the loading and processing strategy, it's desired that both target and source pages are (X)HTML compliant.  
+In order to properly display the page, and due to the loading and processing strategy, it's desired that included pages are (X)HTML compliant.  
 It means:
 * *head* and *body* tags are required;
 * tag and attribute names must be in lower case;
@@ -129,3 +124,8 @@ It means:
 
 ## License
 [MIT License](http://opensource.org/licenses/MIT)
+
+
+## Alternatives
+* [html-imports-content](https://github.com/adjohnson916/html-imports-content)
+* [Matthew-Dove/Inject](https://github.com/Matthew-Dove/Inject)
