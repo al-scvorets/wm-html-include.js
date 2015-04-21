@@ -157,7 +157,7 @@ It means:
 
 
 ## Examples
-* [Combine dialog panel with jQuery UI Button, jQuery UI menubar plugin and Bootstrap carousel, each in separate HTML file, into one target page](https://rawgithub.com/al-scvorets/wm-html-include.js/master/examples/1/index.html)
+* [Combine dialog panel with jQuery UI Button, jQuery UI menubar plugin and Bootstrap carousel, each in separate HTML file, into one target page](http://wamer.net/examples/wm-html-include/1/index.html)
 
 
 ## License
