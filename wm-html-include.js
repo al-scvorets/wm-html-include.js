@@ -1,16 +1,15 @@
 /*!
- * wm-html-include.js   v0.1.1
+ * wm-html-include.js  v0.1.2
  * Includes (injects) HTML pages
  *
- * Copyright 2015 http://wamer.net
+ * Copyright (c) 2015 http://wamer.net
  * Released under the MIT license
- * http://opensource.org/licenses/MIT
  *
- * Last Update: 2015-04-19
+ * Latest Update: 2015-04-21
  */
 
 (function (window, undefined) {
-var _version_     = '0.1.1',
+var _version_     = '0.1.2',
 
     _log_internal = [],
 
@@ -56,6 +55,19 @@ function strip_cdata (src) {
         return src;
 }
 
+// Special precautions required because of IE frills
+function xml_node_value (xelem) {
+    var result = xelem.innerHTML || xelem.xml;
+
+    if (!result && window.XMLSerializer) { // IE check... again
+        result = (new window.XMLSerializer()).serializeToString (xelem);
+        // remove wrapping tag
+        result = result.replace(/^\s*<[^>]*>\s*|\s*<\/[^>]*>\s*$/g, '');
+    }
+
+    return result || '';
+}        
+
 // Script eval (found in jQuery)
 function global_eval (scr) {
     if (scr) {
@@ -67,16 +79,28 @@ function global_eval (scr) {
 }
 
 // Check "Same Origin" cond
-function is_same_origin (url) {
-    var loc = window.location,
-        a   = document.createElement('a');
+var is_same_origin = (function () {
+    function loc_array (loc) {
+        return [
+            loc.hostname,
+            loc.port || (loc.protocol === 'http:' ? '80' : '443'),
+            loc.protocol
+        ];
+    }
 
-    a.href = url;
+    var loc = loc_array (window.location);
 
-    return a.hostname == loc.hostname &&
-           a.port     == loc.port &&
-           a.protocol == loc.protocol;
-}
+    return function (url) {
+        var a = document.createElement('a');
+
+        a.href = url;
+        a.href = a.href;  // trick... wake up IE!!
+
+        var l_a = loc_array (a);
+
+        return l_a[0] == loc[0] && l_a[1] == loc[1] && l_a[2] == loc[2];
+    };
+})();
 
 // Check if already loaded
 function is_link_path_loaded (e) {
@@ -195,7 +219,7 @@ function next_script () {
 
         var ent_src = ent.getAttribute ('src');
         if (ent_src) include_js_byref  (ent_src);
-        else         include_js        (ent.innerHTML);
+        else         include_js        (xml_node_value (ent));
     }, 0);
 }
 
@@ -311,7 +335,6 @@ function include_js (arg_scr) {
         dbg_error ('CORS not supported');
     }
 
-    
     // 
     function get_html (url, callback) {
         var xhr = create_xhr();
@@ -332,12 +355,11 @@ function include_js (arg_scr) {
         if (h_doc !== null) {
             all_styles_and_scripts (h_doc);
 
-            var body_match = h_doc.getElementsByTagName ('body');
-            if (body_match.length === 1) {
-                var _body = body_match[0];
+            var _body = h_doc.getElementsByTagName ('body');
+            if (_body[0]) {
+                // Inject the body
+                target.innerHTML = xml_node_value (_body[0]);
 
-                // Inject the html body
-                target.innerHTML = _body.innerHTML || _body.xml;
                 // Copy all nodes from body in place of target
                 var targ_parent = target.parentNode;
                 while (target.hasChildNodes()) {

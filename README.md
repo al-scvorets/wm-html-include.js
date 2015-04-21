@@ -144,6 +144,20 @@ It means:
 ```
 * only five "standardised" named entities are allowed: `&amp; &quot; &lt; &gt; &apos;`  
   Use numeric entities in all other cases (i.e. `&#160;` in place of `&nbsp;`, `&#169;` in place of `&copy;`, etc.)
+* internal scripts content should be wrapped by `//<![CDATA[` and `//]]>`, i.e.
+```html
+<script>
+//<![CDATA[
+    // my scipt here
+    do_something();
+    // ...
+//]]>
+</script>
+```
+
+
+## Examples
+* [Combine dialog panel with jQuery UI Button, jQuery UI menubar plugin and Bootstrap carousel, each in separate HTML file, into one target page](https://rawgithub.com/al-scvorets/wm-html-include.js/master/examples/1/index.html)
 
 
 ## License

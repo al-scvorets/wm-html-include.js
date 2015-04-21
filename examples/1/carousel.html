@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Wamer Sketch Page</title>
+
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"
+    data-wi-loadchk="jQuery.fn.scrollspy.noConflict" />
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet"
+    data-wi-loadchk="jQuery.fn.scrollspy.noConflict" />
+<style type="text/css">
+.carousel-inner, .carousel-inner > .item {
+    height: 100%
+}
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    width: 100%;
+    height: 100%
+}
+
+#bs_carousel-container {
+    position: absolute;
+    left: 0; top: 0;
+    right: 0; bottom: 0;
+}
+#bs_carousel {
+    position: absolute;
+    left: 0; top: 0;
+    right: 0; bottom: 0;
+}
+
+</style>
+</head>
+<body>
+<div id="bs_carousel-container" class="ws-box">
+    <div id="bs_carousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#bs_carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#bs_carousel" data-slide-to="1"></li>
+            <li data-target="#bs_carousel" data-slide-to="2"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="/sketch/resources/images/sywtli-tropics-x.jpg" alt="Slide 1" />
+                <div class="carousel-caption">Slide 1</div>
+            </div>
+            <div class="item">
+                <img src="/sketch/resources/images/slide2.jpg" alt="Slide 2" />
+                <div class="carousel-caption">Slide 2</div>
+            </div>
+            <div class="item">
+                <img src="/sketch/resources/images/slide3.jpg" alt="Slide 3" />
+                <div class="carousel-caption">Slide 3</div>
+            </div>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#bs_carousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left">
+            </span>
+        </a>
+        <a class="right carousel-control" href="#bs_carousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right">
+            </span>
+        </a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"
+    data-wi-loadchk="jQuery">
+</script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
+    data-wi-loadchk="jQuery.fn.scrollspy.noConflict">
+</script>
+<script>
+//<![CDATA[
+jQuery (function ($) {
+// Bootstrap no-conflict
+if ($.fn.button && $.fn.button.noConflict)
+    $.fn.bs_button  = $.fn.button.noConflict();
+if ($.fn.tooltip && $.fn.tooltip.noConflict)
+    $.fn.bs_tooltip = $.fn.tooltip.noConflict();
+}(jQuery));
+//]]>
+</script>
+</body>
+</html>

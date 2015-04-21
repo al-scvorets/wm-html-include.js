@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Wamer Sketch Page</title>
+
+<link href="https://code.jquery.com/ui/1.11.2/themes/redmond/jquery-ui.min.css" rel="stylesheet"
+    data-wi-loadchk="jQuery.ui" />
+<link href="http://wamer.net/~common/lib/jquery.ui.menubar.css" rel="stylesheet"
+    data-wi-loadchk="jQuery.ui.menubar" />
+<style type="text/css">
+.ui-menu {
+    min-width: 150px;
+}
+
+#menu-container, #main-menu {
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    border-top-right-radius: 50px;
+}
+#menu-container {
+    height: 35px;
+}
+#main-menu {
+    bottom: 0;
+}
+</style>
+</head>
+<body>
+<div id="menu-container" class="ws-box">
+    <ul id="main-menu" class="ws-box">
+        <li><a href="#">File</a><ul>
+            <li><a href="#">New...</a></li>
+            <li><a href="#">Open</a><ul>
+                <li><a href="#">F1</a></li>
+                <li><a href="#">F2</a></li>
+                <li><a href="#">F3</a></li>
+            </ul></li>
+            <li><a href="#">Save</a></li>
+            <li><a href="#">Save As...</a></li>
+            <li><a href="#">-</a></li>
+            <li><a href="#">Options</a><ul>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+            </ul></li>
+        </ul></li>
+        <li><a href="#">View</a><ul>
+            <li><a href="#">Text</a><ul>
+                <li><a href="#">ANSI</a></li>
+                <li><a href="#">UTF-8</a></li>
+            </ul></li>
+            <li><a href="#">Hex</a></li>
+            <li><a href="#">Binary</a></li>
+        </ul></li>
+        <li><a href="#">Options</a><ul>
+            <li><a href="#">Settings...</a></li>
+            <li><a href="#">Styles...</a></li>
+            <li><a href="#">-</a></li>
+            <li><a href="#">Import</a><ul>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Styles</a></li>
+            </ul></li>
+            <li><a href="#">Export</a><ul>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Styles</a></li>
+            </ul></li>
+        </ul></li>
+        <li><a href="#">?</a><ul>
+            <li><a href="#">Help...</a></li>
+            <li><a href="#">Forum</a></li>
+            <li><a href="#">Online Documentation</a></li>
+            <li><a href="#">-</a></li>
+            <li><a href="#">About</a></li>
+        </ul></li>
+    </ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"
+    data-wi-loadchk="jQuery">
+</script>
+<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"
+    data-wi-loadchk="jQuery.ui">
+</script>
+<script src="http://wamer.net/~common/lib/jquery.ui.menubar.js"
+    data-wi-loadchk="jQuery.ui.menubar">
+</script>
+<script>
+//<![CDATA[
+jQuery (function ($) {
+    $('#main-menu').menubar();
+}(jQuery));
+//]]>
+</script>
+</body>
+</html>
