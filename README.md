@@ -23,7 +23,7 @@ patch existing Web page not changing significantly its content.
 <!-- ... or the same domain -->
 <span data-wi-src="component-2.html"> </span>
 <!-- ... -->
-<!-- It may even look almost like W3C "import" -->
+<!-- It may even looks almost like W3C "import" -->
 <link data-wi-src="component-3.html" />
 <!-- ... -->
 <!-- Somewhere below -->
