@@ -1,5 +1,5 @@
 /*!
- * wm-html-include.js  v0.1.2
+ * wm-html-include.js  v0.1.3
  * Includes (injects) HTML pages
  *
  * Copyright (c) 2015 http://wamer.net
@@ -9,7 +9,7 @@
  */
 
 (function (window, undefined) {
-var _version_     = '0.1.2',
+var _version_     = '0.1.3',
 
     _log_internal = [],
 
@@ -62,7 +62,7 @@ function xml_node_value (xelem) {
     if (!result && window.XMLSerializer) { // IE check... again
         result = (new window.XMLSerializer()).serializeToString (xelem);
         // remove wrapping tag
-        result = result.replace(/^\s*<[^>]*>\s*|\s*<\/[^>]*>\s*$/g, '');
+        result = result.replace(/^\s*<[^>]*>|<\/[^>]*>\s*$/g, '');
     }
 
     return result || '';
