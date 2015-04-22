@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>wm-html-include.js by al-scvorets</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>wm-html-include.js</h1>
+        <h2>Pleasures of HTML include while W3C HTML Import was still a draft</h2>
+        <a href="https://github.com/al-scvorets/wm-html-include.js" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="wm-html-includejs" class="anchor" href="#wm-html-includejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>wm-html-include.js</h1>
+
+<p>is a small <em>script</em> to include external HTML page(s) into comprising HTML page.<br>
+A part of  <a href="http://www.wamer.net/">Wamer project</a></p>
+
+<h2>
+<a id="when-to-use-it" class="anchor" href="#when-to-use-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>When to use it</h2>
+
+<p>If you need to compose a Web page on client-side, but either iframes or <a href="http://www.w3.org/TR/2013/WD-html-imports-20130514">HTML Imports</a> are not suitable to the case.<br>
+One most likely may need it to:<br>
+quickly sew Web page from some existing or newly developed small parts (components);<br>
+patch existing Web page not changing significantly its content.</p>
+
+<h2>
+<a id="how-to-use-it" class="anchor" href="#how-to-use-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use it</h2>
+
+<h3>
+<a id="static-links" class="anchor" href="#static-links" aria-hidden="true"><span class="octicon octicon-link"></span></a>Static links</h3>
+
+<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- Any tag with reference to another HTML, may be another... --&gt;</span>
+&lt;<span class="pl-ent">div</span> <span class="pl-e">data-wi-src</span>=<span class="pl-s"><span class="pl-pds">"</span>http://another.domain/component-1.html<span class="pl-pds">"</span></span>&gt; &lt;/<span class="pl-ent">div</span>&gt;
+<span class="pl-c">&lt;!-- ... --&gt;</span>
+<span class="pl-c">&lt;!-- ... or the same domain --&gt;</span>
+&lt;<span class="pl-ent">span</span> <span class="pl-e">data-wi-src</span>=<span class="pl-s"><span class="pl-pds">"</span>component-2.html<span class="pl-pds">"</span></span>&gt; &lt;/<span class="pl-ent">span</span>&gt;
+<span class="pl-c">&lt;!-- ... --&gt;</span>
+<span class="pl-c">&lt;!-- It may even looks almost like W3C "import" --&gt;</span>
+&lt;<span class="pl-ent">link</span> <span class="pl-e">data-wi-src</span>=<span class="pl-s"><span class="pl-pds">"</span>component-3.html<span class="pl-pds">"</span></span> /&gt;
+<span class="pl-c">&lt;!-- ... --&gt;</span>
+<span class="pl-c">&lt;!-- Somewhere below --&gt;</span>
+<span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>wm-html-include.js<span class="pl-pds">"</span></span>&gt; &lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+
+<p><em>The script</em> includes all the pages referenced by <strong>data-wi-src</strong> attribute into the comprising HTML page.<br>
+<strong>Note!</strong>: <em>the script</em> entirely removes the target element replacing it with referenced content.
+So if you need any additional styles for included part you should wrap target with some container.
+Example:</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">"</span>width: 300px; height: 200px; background: silver;<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">link</span> <span class="pl-e">data-wi-src</span>=<span class="pl-s"><span class="pl-pds">"</span>component.html<span class="pl-pds">"</span></span> /&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<h3>
+<a id="dynamic-links" class="anchor" href="#dynamic-links" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dynamic links</h3>
+
+<p>Use <strong><em>wmHtmlInclude()</em></strong> function of <em>the script</em> interface.</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>place-here<span class="pl-pds">"</span></span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;
+<span class="pl-c">&lt;!-- ... --&gt;</span>
+<span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>wm-html-include.js<span class="pl-pds">"</span></span>&gt; &lt;/<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">    <span class="pl-k">var</span> link <span class="pl-k">=</span> <span class="pl-c1">document</span>.createElement (<span class="pl-s"><span class="pl-pds">'</span>link<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">    link.setAttribute (<span class="pl-s"><span class="pl-pds">'</span>data-wi-src<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>new-component.html<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">    <span class="pl-c1">document</span>.getElementById (<span class="pl-s"><span class="pl-pds">'</span>place-here<span class="pl-pds">'</span></span>).appendChild (link);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// now do the thing</span></span>
+<span class="pl-s1">    <span class="pl-c1">window</span>.wmHtmlInclude();</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+
+<h2>
+<a id="how-it-works" class="anchor" href="#how-it-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>How it works</h2>
+
+<p><em>The script</em> finds all the tags with <strong>data-wi-src</strong> attribute.<br>
+Then, for each such tag it gets the referred HTML page,<br>
+merges all it's <em>style, link[rel="stylesheet"]</em> to the target page,<br>
+replaces target element with source's <em>body</em>,<br>
+loads and runs source's <em>script</em> elements.  </p>
+
+<p>It circumvents the same-origin restrictions by <a href="https://developer.yahoo.com/yql/">YQL</a>
+and works with any <a href="http://caniuse.com/#feat=cors">CORS enabled browser</a>.</p>
+
+<p>There are a few cases when the <em>css</em> or <em>script</em> is NOT loaded from the include:</p>
+
+<ol>
+<li>
+<em>link</em> or <em>script</em> with <em>src</em> attribute. <em>The script</em> checks if corresponding
+resource with the same <em>url</em> value already exists in the target document. In this case the resource
+is not loaded;</li>
+<li>You can define the loading condition explicitly by <em>data-wi-loadchk</em> attribute in included resources</li>
+</ol>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">link</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>https://code.jquery.com/ui/1.11.2/themes/redmond/jquery-ui.min.css<span class="pl-pds">"</span></span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>stylesheet<span class="pl-pds">"</span></span>
+        <span class="pl-e">data-wi-loadchk</span>=<span class="pl-s"><span class="pl-pds">"</span>jQuery.ui<span class="pl-pds">"</span></span> /&gt;
+&lt;<span class="pl-ent">link</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css<span class="pl-pds">"</span></span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>stylesheet<span class="pl-pds">"</span></span>
+        <span class="pl-e">data-wi-loadchk</span>=<span class="pl-s"><span class="pl-pds">"</span>jQuery.fn.scrollspy.noConflict<span class="pl-pds">"</span></span> /&gt;
+<span class="pl-c">&lt;!-- ... --&gt;</span>
+<span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://code.jquery.com/ui/1.11.2/jquery-ui.min.js<span class="pl-pds">"</span></span></span>
+<span class="pl-s1">        <span class="pl-e">data-wi-loadchk</span>=<span class="pl-s"><span class="pl-pds">"</span>jQuery.ui<span class="pl-pds">"</span></span>&gt;</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js<span class="pl-pds">"</span></span></span>
+<span class="pl-s1">        <span class="pl-e">data-wi-loadchk</span>=<span class="pl-s"><span class="pl-pds">"</span>jQuery.fn.scrollspy.noConflict<span class="pl-pds">"</span></span>&gt;</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+
+<p><em>The script</em> evaluates the condition pointed out by <em>data-wi-loadchk</em> and does NOT load
+ the resource if the condition is <em>true</em>.<br>
+ In the example above, the <em>jQuery.ui</em> and <em>Bootstrap</em> libraries are checked to prevent the second loading.</p>
+
+<h2>
+<a id="warning-xhtml-compliance-assumed" class="anchor" href="#warning-xhtml-compliance-assumed" aria-hidden="true"><span class="octicon octicon-link"></span></a>Warning: (X)HTML compliance assumed</h2>
+
+<p>In order to properly display the page, and due to the loading and processing strategy, it's desired that included pages are (X)HTML compliant.<br>
+It means:</p>
+
+<ul>
+<li>
+<em>head</em> and <em>body</em> tags are required;</li>
+<li>tag and attribute names must be in lower case;</li>
+<li>for non-empty elements, end tags are required</li>
+</ul>
+
+<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- BAD --&gt;</span>
+    &lt;<span class="pl-ent">p</span>&gt;paragraph 1&lt;<span class="pl-ent">p</span>&gt;paragraph 2
+<span class="pl-c">&lt;!-- GOOD --&gt;</span>
+    &lt;<span class="pl-ent">p</span>&gt;paragraph 1&lt;/<span class="pl-ent">p</span>&gt;&lt;<span class="pl-ent">p</span>&gt;paragraph 2&lt;/<span class="pl-ent">p</span>&gt;</pre></div>
+
+<ul>
+<li>attribute values must always be quoted</li>
+</ul>
+
+<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- BAD --&gt;</span>
+    &lt;<span class="pl-ent">td</span> <span class="pl-e">rowspan</span>=<span class="pl-s">3</span>&gt;
+<span class="pl-c">&lt;!-- GOOD --&gt;</span>
+    &lt;<span class="pl-ent">td</span> <span class="pl-e">rowspan</span>=<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>&gt;</pre></div>
+
+<ul>
+<li>attribute-value pairs must be written in full</li>
+</ul>
+
+<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- BAD --&gt;</span>
+    &lt;<span class="pl-ent">dl</span> <span class="pl-e">compact</span>&gt;
+<span class="pl-c">&lt;!-- GOOD --&gt;</span>
+    &lt;<span class="pl-ent">dl</span> <span class="pl-e">compact</span>=<span class="pl-s"><span class="pl-pds">"</span>compact<span class="pl-pds">"</span></span>&gt;</pre></div>
+
+<ul>
+<li>tag for empty element must end with " /&gt;"</li>
+</ul>
+
+<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- BAD --&gt;</span>
+    &lt;<span class="pl-ent">hr</span>&gt; &lt;<span class="pl-ent">br</span>&gt;
+<span class="pl-c">&lt;!-- GOOD --&gt;</span>
+    &lt;<span class="pl-ent">hr</span> /&gt; &lt;<span class="pl-ent">br</span> /&gt;</pre></div>
+
+<ul>
+<li>Include a space before the trailing / and &gt; of empty elements, e.g. <code>&lt;br /&gt;</code>, <code>&lt;hr /&gt;</code> and <code>&lt;img src="karen.jpg" alt="Karen" /&gt;</code>
+</li>
+<li>do not use empty instance of an element whose content model is not EMPTY (for example, an empty div or paragraph)</li>
+</ul>
+
+<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- BAD --&gt;</span>
+    &lt;<span class="pl-ent">div</span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+<span class="pl-c">&lt;!-- GOOD --&gt;</span>
+    &lt;<span class="pl-ent">div</span>&gt; &lt;/<span class="pl-ent">div</span>&gt;  <span class="pl-c">&lt;!-- white space inside! --&gt;</span>
+<span class="pl-c">&lt;!-- GOOD --&gt;</span>
+    &lt;<span class="pl-ent">div</span>&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;      <span class="pl-c">&lt;!-- line-break between start and end tags --&gt;</span></pre></div>
+
+<ul>
+<li>only five "standardised" named entities are allowed: <code>&amp;amp; &amp;quot; &amp;lt; &amp;gt; &amp;apos;</code><br>
+Use numeric entities in all other cases (i.e. <code>&amp;#160;</code> in place of <code>&amp;nbsp;</code>, <code>&amp;#169;</code> in place of <code>&amp;copy;</code>, etc.)</li>
+<li>internal scripts content should be wrapped by <code>//&lt;![CDATA[</code> and <code>//]]&gt;</code>, i.e.</li>
+</ul>
+
+<div class="highlight highlight-html"><pre><span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1"><span class="pl-c">//&lt;![CDATA[</span></span>
+<span class="pl-s1">    <span class="pl-c">// my scipt here</span></span>
+<span class="pl-s1">    do_something();</span>
+<span class="pl-s1">    <span class="pl-c">// ...</span></span>
+<span class="pl-s1"><span class="pl-c">//]]&gt;</span></span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<ul>
+<li><a href="http://wamer.net/examples/wm-html-include/1/index.html">Combine dialog panel with jQuery UI Button, jQuery UI menubar plugin and Bootstrap carousel, each in separate HTML file, into one target page</a></li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="http://opensource.org/licenses/MIT">MIT License</a></p>
+
+<h2>
+<a id="alternatives" class="anchor" href="#alternatives" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alternatives</h2>
+
+<ul>
+<li><a href="https://github.com/adjohnson916/html-imports-content">html-imports-content</a></li>
+<li><a href="https://github.com/Matthew-Dove/Inject">Matthew-Dove/Inject</a></li>
+</ul>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/al-scvorets/wm-html-include.js/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/al-scvorets/wm-html-include.js/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/al-scvorets/wm-html-include.js"></a> is maintained by <a href="https://github.com/al-scvorets">al-scvorets</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
