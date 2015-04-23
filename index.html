@@ -144,69 +144,15 @@ is not loaded;</li>
 
 <ul>
 <li>have <em>head</em> and <em>body</em> tags;</li>
-<li><p>are (X)HTML compliant (<a href="https://github.com/al-scvorets/wm-html-include.js/wiki/%28X%29HTML-compliance-in-short">what it means?</a>).</p></li>
-<li><p>for non-empty elements, end tags are required</p></li>
+<li>are (X)HTML compliant (<a href="https://github.com/al-scvorets/wm-html-include.js/wiki/%28X%29HTML-compliance-in-short">what it means?</a>).</li>
 </ul>
 
-<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- BAD --&gt;</span>
-    &lt;<span class="pl-ent">p</span>&gt;paragraph 1&lt;<span class="pl-ent">p</span>&gt;paragraph 2
-<span class="pl-c">&lt;!-- GOOD --&gt;</span>
-    &lt;<span class="pl-ent">p</span>&gt;paragraph 1&lt;/<span class="pl-ent">p</span>&gt;&lt;<span class="pl-ent">p</span>&gt;paragraph 2&lt;/<span class="pl-ent">p</span>&gt;</pre></div>
+<h2>
+<a id="more-restrictions-significant" class="anchor" href="#more-restrictions-significant" aria-hidden="true"><span class="octicon octicon-link"></span></a>More restrictions (significant)</h2>
 
-<ul>
-<li>attribute values must always be quoted</li>
-</ul>
-
-<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- BAD --&gt;</span>
-    &lt;<span class="pl-ent">td</span> <span class="pl-e">rowspan</span>=<span class="pl-s">3</span>&gt;
-<span class="pl-c">&lt;!-- GOOD --&gt;</span>
-    &lt;<span class="pl-ent">td</span> <span class="pl-e">rowspan</span>=<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span>&gt;</pre></div>
-
-<ul>
-<li>attribute-value pairs must be written in full</li>
-</ul>
-
-<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- BAD --&gt;</span>
-    &lt;<span class="pl-ent">dl</span> <span class="pl-e">compact</span>&gt;
-<span class="pl-c">&lt;!-- GOOD --&gt;</span>
-    &lt;<span class="pl-ent">dl</span> <span class="pl-e">compact</span>=<span class="pl-s"><span class="pl-pds">"</span>compact<span class="pl-pds">"</span></span>&gt;</pre></div>
-
-<ul>
-<li>tag for empty element must end with " /&gt;"</li>
-</ul>
-
-<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- BAD --&gt;</span>
-    &lt;<span class="pl-ent">hr</span>&gt; &lt;<span class="pl-ent">br</span>&gt;
-<span class="pl-c">&lt;!-- GOOD --&gt;</span>
-    &lt;<span class="pl-ent">hr</span> /&gt; &lt;<span class="pl-ent">br</span> /&gt;</pre></div>
-
-<ul>
-<li>Include a space before the trailing / and &gt; of empty elements, e.g. <code>&lt;br /&gt;</code>, <code>&lt;hr /&gt;</code> and <code>&lt;img src="karen.jpg" alt="Karen" /&gt;</code>
-</li>
-<li>do not use empty instance of an element whose content model is not EMPTY (for example, an empty div or paragraph)</li>
-</ul>
-
-<div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- BAD --&gt;</span>
-    &lt;<span class="pl-ent">div</span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
-<span class="pl-c">&lt;!-- GOOD --&gt;</span>
-    &lt;<span class="pl-ent">div</span>&gt; &lt;/<span class="pl-ent">div</span>&gt;  <span class="pl-c">&lt;!-- white space inside! --&gt;</span>
-<span class="pl-c">&lt;!-- GOOD --&gt;</span>
-    &lt;<span class="pl-ent">div</span>&gt;
-    &lt;/<span class="pl-ent">div</span>&gt;      <span class="pl-c">&lt;!-- line-break between start and end tags --&gt;</span></pre></div>
-
-<ul>
-<li>only five "standardised" named entities are allowed: <code>&amp;amp; &amp;quot; &amp;lt; &amp;gt; &amp;apos;</code><br>
-Use numeric entities in all other cases (i.e. <code>&amp;#160;</code> in place of <code>&amp;nbsp;</code>, <code>&amp;#169;</code> in place of <code>&amp;copy;</code>, etc.)</li>
-<li>internal scripts content should be wrapped by <code>//&lt;![CDATA[</code> and <code>//]]&gt;</code>, i.e.</li>
-</ul>
-
-<div class="highlight highlight-html"><pre><span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
-<span class="pl-s1"><span class="pl-c">//&lt;![CDATA[</span></span>
-<span class="pl-s1">    <span class="pl-c">// my scipt here</span></span>
-<span class="pl-s1">    do_something();</span>
-<span class="pl-s1">    <span class="pl-c">// ...</span></span>
-<span class="pl-s1"><span class="pl-c">//]]&gt;</span></span>
-<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+<p>Even don't try to insecure (HTTP) includes on secure (HTTPS) page.<br>
+Normally, browser will block that.<br>
+And it will be right.</p>
 
 <h2>
 <a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
