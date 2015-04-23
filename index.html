@@ -29,6 +29,18 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h1>
+<a id="how-the-problem-arose" class="anchor" href="#how-the-problem-arose" aria-hidden="true"><span class="octicon octicon-link"></span></a>How the problem arose</h1>
+
+<p>One customer asked me for some additions to his Web page.<br>
+It had to be small, compact HTML insertions, with their own styles and behavior and interaction with the rest of the page (some event handling and data exchange).<br>
+At the same time, the customer would be able to change styles of these "widgets" along with the main theme of the page, and to change/add some interaction in the future.<br>
+How could I do this?<br>
+IFrame based solution is heavyweight and associated with surplus difficulties to overcome the "impermeability".<br>
+Web components are not supported yet everywhere, and it's too "unusual" for my customer.<br>
+And <em>...drumroll...</em><br>
+the <strong>Solution</strong> was found!</p>
+
+<h1>
 <a id="wm-html-includejs" class="anchor" href="#wm-html-includejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>wm-html-include.js</h1>
 
 <p>is a small <em>script</em> to include external HTML page(s) into comprising HTML page.<br>
@@ -126,16 +138,14 @@ is not loaded;</li>
  In the example above, the <em>jQuery.ui</em> and <em>Bootstrap</em> libraries are checked to prevent the second loading.</p>
 
 <h2>
-<a id="warning-xhtml-compliance-assumed" class="anchor" href="#warning-xhtml-compliance-assumed" aria-hidden="true"><span class="octicon octicon-link"></span></a>Warning: (X)HTML compliance assumed</h2>
+<a id="some-restrictions-not-arduous" class="anchor" href="#some-restrictions-not-arduous" aria-hidden="true"><span class="octicon octicon-link"></span></a>Some restrictions (not arduous)</h2>
 
-<p>In order to properly display the page, and due to the loading and processing strategy, it's desired that included pages are (X)HTML compliant.<br>
-It means:</p>
+<p>In order to properly display the page, and due to the loading and processing strategy, it's required that included pages</p>
 
 <ul>
-<li>
-<em>head</em> and <em>body</em> tags are required;</li>
-<li>tag and attribute names must be in lower case;</li>
-<li>for non-empty elements, end tags are required</li>
+<li>have <em>head</em> and <em>body</em> tags;</li>
+<li><p>are (X)HTML compliant (<a href="https://github.com/al-scvorets/wm-html-include.js/wiki/%28X%29HTML-compliance-in-short">what it means?</a>).</p></li>
+<li><p>for non-empty elements, end tags are required</p></li>
 </ul>
 
 <div class="highlight highlight-html"><pre><span class="pl-c">&lt;!-- BAD --&gt;</span>
