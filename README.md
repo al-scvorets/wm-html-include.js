@@ -63,7 +63,7 @@ Use ***wmHtmlInclude()*** function of *the script* interface.
 
 ## How it works and restrictions
 
-and other useful info [here](http://al-scvorets.github.io/wm-html-include.js/)
+plus other useful info [here](http://al-scvorets.github.io/wm-html-include.js/)
 
 
 ## Examples
