@@ -77,3 +77,5 @@ plus other useful info [here](http://al-scvorets.github.io/wm-html-include.js/)
 ## Alternatives
 * [html-imports-content](https://github.com/adjohnson916/html-imports-content)
 * [Matthew-Dove/Inject](https://github.com/Matthew-Dove/Inject)
+* [LexmarkWeb/csi.js](https://github.com/LexmarkWeb/csi.js)
+
